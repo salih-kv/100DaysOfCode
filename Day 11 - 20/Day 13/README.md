@@ -2,4 +2,6 @@ DAY 13:
 
 ## Express.js
 
-- Validation | express-validator
+express-validator
+- Validation
+- Validation Schema

@@ -1,5 +1,12 @@
 import express from "express";
-import { query, validationResult, body, matchedData } from "express-validator";
+import {
+  query,
+  validationResult,
+  body,
+  matchedData,
+  checkSchema,
+} from "express-validator";
+import { createUserValidationSchema } from "./utils/validationSchemas.js";
 
 const app = express();
 const PORT = 3000;
@@ -52,6 +59,7 @@ app.post(
       .withMessage("Username must be a string!"),
     body("displayName").notEmpty(),
   ],
+  checkSchema(createUserValidationSchema),
   (req, res) => {
     const result = validationResult(req);
     console.log(result);
