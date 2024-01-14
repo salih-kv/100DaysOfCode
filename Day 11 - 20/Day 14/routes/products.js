@@ -4,8 +4,10 @@ const router = Router();
 
 router.get("/api/products", (req, res) => {
   console.log(req.signedCookies);
+  console.log(req.session);
+  console.log(req.sessionID);
 
-  if (req.signedCookies && req.signedCookies.msg === "hello-world") {
+  if (req.signedCookies && req.signedCookies.msg === "hello world") {
     res.send([{ id: 1, productName: "Laptop x", price: 60000 }]);
   }
 
