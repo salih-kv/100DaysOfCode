@@ -1,23 +1,23 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/vitest";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 
 describe("Test <App/>", () => {
+  userEvent.setup();
   render(<App />);
+  it("User Interaction", async () => {
+    const beforeIncrement = screen.getByTestId("span");
+    expect(beforeIncrement).toHaveTextContent(0);
 
-  it("Checking if h1 exist inside the component", () => {
-    // expect(screen.getByRole("heading")).toHaveTextContent("UNIT TESTING");
+    const submitButton = screen.getByRole("button");
+    await userEvent.click(submitButton);
 
-    const header1 = screen.getByRole("heading", {
-      name: "Hello 1",
-    });
-    expect(header1).toBeInTheDocument();
+    const afterIncrement = screen.getByTestId("span");
+    expect(afterIncrement).toHaveTextContent(1);
 
-    expect(screen.getByText("Hello 2"));
-  });
-
-  it("check if span exist in the component", () => {
-    expect(screen.getByTestId("span")).toBeInTheDocument();
+    const input = screen.getByRole("textbox");
+    await userEvent.type(input, "10");
+    expect(input).toHaveValue();
   });
 });

@@ -1,11 +1,12 @@
+import { useState } from "react";
+
 function App() {
+  const [count, setCount] = useState(0);
   return (
     <>
-      <h1>UNIT TESTING</h1>
-      <h2>Hello 1</h2>
-      <h2>Hello 2</h2>
-      <h3>Hello 3</h3>
-      <span data-testid="span">10</span>
+      <span data-testid="span">{count}</span>
+      <input type="text" />
+      <button onClick={() => setCount((prev) => prev + 1)}>submit</button>
     </>
   );
 }
